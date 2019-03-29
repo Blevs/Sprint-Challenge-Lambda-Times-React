@@ -65,14 +65,14 @@ cursor: pointer;
 }
 `;
 
-const Login = ({closeLogin}) => {
+const Login = ({closeLogin, handleLogin}) => {
   return (
     <LoginDiv>
       <Close onClick={closeLogin}>&times;</Close>
       <StyledH2>Log In</StyledH2>
-      <LoginForm>
+      <LoginForm onSubmit={handleLogin}>
         <StyledInput type="text" placeholder="Username" name="username"/>
-        <StyledInput type="password" placeholder="Password" name="username"/>
+        <StyledInput type="password" placeholder="Password" name="password"/>
         <StyledButton type="submit">Log In</StyledButton>
       </LoginForm>
     </LoginDiv>
@@ -80,6 +80,7 @@ const Login = ({closeLogin}) => {
 };
 
 Login.propTypes = {
-  closeLogin: PropTypes.func.isRequired
+  closeLogin: PropTypes.func.isRequired,
+  handleLogin: PropTypes.func.isRequired
 };
 export default Login;

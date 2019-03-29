@@ -20,12 +20,21 @@ cursor: pointer;
 
 const App = () => {
   const [renderLogin, setRenderLogin] = useState(true);
+  const handleLogin = event => {
+    event.preventDefault();
+    const username = event.target.username.value;
+    const password = event.target.password.value;
+    if (password !== "" && username !== "") {
+      window.localStorage.setItem("loggedIn", JSON.stringify(true));
+      setRenderLogin(false);
+    }
+  };
   return (
     <div className="App">
     {renderLogin
      && <ModalDiv id="login-modal"
                   onClick={event => event.target.id === "login-modal" && setRenderLogin(false)}>
-          <Login closeLogin={() => setRenderLogin(false)}/>
+          <Login closeLogin={() => setRenderLogin(false)} handleLogin={handleLogin} />
         </ModalDiv>}
       <TopBar displayLogin={() => setRenderLogin(true)}/>
       <Header />
