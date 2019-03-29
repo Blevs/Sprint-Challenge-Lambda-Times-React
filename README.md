@@ -28,21 +28,79 @@ Look through the application code. If you have the old Lambda Times (Applied Jav
 
 ## Self-Study/Essay Questions
 
-- [ ] What are PropTypes used for? Please describe why it's important to type check our data in JavaScript.
-- [ ] Describe a life-cycle event in React?
-- [ ] Explain the details of a Higher Order Component?
+- [x] What are PropTypes used for? Please describe why it's important to type check our data in JavaScript.
+
+JavaScript is a dynamic language that doesn't have a static type system to check
+types during compilation. This allows faster development, but allows for certain
+types of bugs. There are systems for dynamic typing that can check types at
+runtime. PropTypes are one such system for React components.
+
+It allows us to check types during development execution to catch bugs. While it
+doesn't prevent certain obscure code-paths from violating our expected type
+system in deployment, it help us reason, develop, and refactor the program.
+
+- [x] Describe a life-cycle event in React?
+
+React components undergo a complete lifecycle during the running of an
+application. There are three main phases: mounting, updating and unmounting. A
+lifecycle event allows us to execute certain code during specific points in the
+existence of the component.
+
+For example, `componentDidMount` runs once for each component just after it is
+instantiated. This is a good place for code that fetches and establishes state
+that we do not want to wait for during the initial construction of the component.
+
+- [x] Explain the details of a Higher Order Component?
+
+In my opinion, a Higher Order Component is a bit of a misnomer, as it is, in
+fact, not a component that takes components as arguments. It is a function that
+takes components as arguments to form a new component, that is potentially an
+aggregate of the supplied components. It is a function that creates components
+from other components.
+
 - [ ] What are three different ways to style components in React? Explain some of the benefits of each.
+
+There are three main methods of styling components in React:
+
+1. Inline Styles
+
+React support a map syntax that is converted to CSS. It is convenient to supply
+inline to components and gives us the full power of JavaScript to construct the
+CSS rules. However, the syntax is unideal as it must converted kebabed CSS
+keywords to camelCased object keys, and it lacks access to some advanced CSS
+features.
+
+2. Style Sheets
+
+React allows us to import css style sheets either directly into our component
+files to be compiled with webpack, or to include them in the actual html like
+any other webpage. And with a few plugins, we can easily use a preprocessor like
+LESS or SASS.
+
+This allows us to leverage all of our standard CSS skills and presents a clear
+separation of concerns, but we lose out on using JavaScript to modify our styles
+outside of using classes or adding inline styles as well.
+
+3. CSS in JS
+
+There are plugins, like styled-components, that allow embedding CSS directly in
+our JavaScript.
+
+This gives us a good combination of traditional CSS syntax and the power of
+JavaScript to modify the styles. While some see it as a benefit to do everything
+in JavaScript, we do lose the separation of concerns that CSS files normally
+present.
 
 ## Project Setup
 
 Follow these steps to set up your project:
 
-- [ ] Create a forked copy of this project.
-- [ ] Add your project manager as collaborator on Github.
-- [ ] Clone your OWN version of the repository (Not Lambda's by mistake!).
-- [ ] Create a new branch: git checkout -b `<firstName-lastName>`.
-- [ ] Implement the project on your newly created `<firstName-lastName>` branch, committing changes regularly.
-- [ ] Push commits: git push origin `<firstName-lastName>`.
+- [x] Create a forked copy of this project.
+- [x] Add your project manager as collaborator on Github.
+- [x] Clone your OWN version of the repository (Not Lambda's by mistake!).
+- [x] Create a new branch: git checkout -b `<firstName-lastName>`.
+- [x] Implement the project on your newly created `<firstName-lastName>` branch, committing changes regularly.
+- [x] Push commits: git push origin `<firstName-lastName>`.
 - [ ] From within the `lambdatimes` folder run `yarn` and then `yarn start`. This will open your locally hosted application in your browser. Once you are ready move onto the next steps.
 - [ ] Inside the `Content` folder you will find all 5 components that make up the content of the application. The flow goes like this: `Content > Tabs > Tab` and `Content > Cards > Card`. Follow the directions in the `Content` component to get your data ready.
 
