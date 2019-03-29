@@ -33,6 +33,11 @@ const App = () => {
       setRenderLogin(false);
     }
   };
+  const handleLogout = event => {
+    event.preventDefault();
+    window.localStorage.setItem("loggedIn", JSON.stringify(false));
+    window.location.reload();
+  };
   return (
     <div className="App">
     {renderLogin
@@ -40,7 +45,7 @@ const App = () => {
                   onClick={event => event.target.id === "login-modal" && setRenderLogin(false)}>
           <Login closeLogin={() => setRenderLogin(false)} handleLogin={handleLogin} />
         </ModalDiv>}
-      <TopBar displayLogin={() => setRenderLogin(true)}/>
+      <TopBar displayLogin={() => setRenderLogin(true)} handleLogout={handleLogout} />
       <Header />
       <Carousel />
       <ProtectedContent displayLogin={() => setRenderLogin(true)}/>

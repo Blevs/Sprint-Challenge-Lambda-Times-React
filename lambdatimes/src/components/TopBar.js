@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import { withAuthentication } from '../authenticate';
 
 // Refactor this component to use styled components and not classNames. 
 // You can find the corresponding CSS in the CSS/index.css file
@@ -74,9 +75,22 @@ const ContainerRight = styled.div`
   span {
     cursor: pointer;
   }
+  span:first-child {
+    margin-right: 10px;
+  }
 `;
 
-const TopBar = ({displayLogin}) => {
+const LogOutSpan = ({handleLogout}) => {
+  return <span onClick={handleLogout}>LOG OUT</span>;
+};
+
+const Empty = () => {
+  return <div/>;
+};
+
+const LogOut = withAuthentication(LogOutSpan)(Empty);
+
+const TopBar = ({displayLogin, handleLogout}) => {
   return (
     <TopBarDiv>
       <ContainerDiv>
@@ -87,6 +101,8 @@ const TopBar = ({displayLogin}) => {
           <span>GENERAL</span><span>BROWNBAG</span><span>RANDOM</span><span>MUSIC</span><span>ANNOUNCEMENTS</span>
         </ContainerCenter>
         <ContainerRight>
+          {/* <span onClick={handleLogout}>LOG OUT</span> */}
+          <LogOut handleLogout={handleLogout}/>
           <span onClick={displayLogin}>LOG IN</span>
         </ContainerRight>
       </ContainerDiv>
@@ -95,7 +111,8 @@ const TopBar = ({displayLogin}) => {
 };
 
 TopBar.propTypes = {
-  displayLogin: PropTypes.func.isRequired
+  displayLogin: PropTypes.func.isRequired,
+  handleLogout: PropTypes.func.isRequired
 };
 
 export default TopBar;
