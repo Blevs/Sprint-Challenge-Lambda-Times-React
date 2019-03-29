@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 // Refactor this component to use styled components and not classNames. 
 // You can find the corresponding CSS in the CSS/index.css file
@@ -74,7 +75,7 @@ const ContainerRight = styled.div`
   }
 `;
 
-const TopBar = () => {
+const TopBar = ({displayLogin}) => {
   return (
     <TopBarDiv>
       <ContainerDiv>
@@ -85,11 +86,15 @@ const TopBar = () => {
           <span>GENERAL</span><span>BROWNBAG</span><span>RANDOM</span><span>MUSIC</span><span>ANNOUNCEMENTS</span>
         </ContainerCenter>
         <ContainerRight>
-          <span>LOG IN</span>
+          <span onClick={displayLogin}>LOG IN</span>
         </ContainerRight>
       </ContainerDiv>
     </TopBarDiv>
   );
+};
+
+TopBar.propTypes = {
+  displayLogin: PropTypes.func.isRequired
 };
 
 export default TopBar;
