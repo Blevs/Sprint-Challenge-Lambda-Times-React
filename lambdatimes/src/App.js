@@ -4,7 +4,9 @@ import Header from './components/Header';
 import Content from './components/Content/Content';
 import Carousel from './components/Carousel/Carousel';
 import Login from './components/Login';
+import NotLoggedIn from './components/Content/NotLoggedIn';
 import styled from 'styled-components';
+import { withAuthentication } from './authenticate';
 
 const ModalDiv = styled.div`
 position: fixed;
@@ -18,8 +20,10 @@ z-index: 100;
 cursor: pointer;
 `;
 
+const ProtectedContent = withAuthentication(Content)(NotLoggedIn);
+
 const App = () => {
-  const [renderLogin, setRenderLogin] = useState(true);
+  const [renderLogin, setRenderLogin] = useState(false);
   const handleLogin = event => {
     event.preventDefault();
     const username = event.target.username.value;
@@ -39,7 +43,7 @@ const App = () => {
       <TopBar displayLogin={() => setRenderLogin(true)}/>
       <Header />
       <Carousel />
-      <Content />
+      <ProtectedContent displayLogin={() => setRenderLogin(true)}/>
     </div>
   );
 };
